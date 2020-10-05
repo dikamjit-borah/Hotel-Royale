@@ -1,9 +1,99 @@
+const home_view = document.getElementById("home_view");
 const create_room = document.getElementById("create_room");
 // console.log(create_room);
 const book_room = document.getElementById("book_room");
 const room_view = document.getElementById("room_view");
 const customer_profile = document.getElementById("customer_profile");
+ let logout = document.getElementById("logout");
 const front_page = document.getElementById("front_page");
+
+const homeView = () => {
+
+	let t_rooms = 0;
+	let t_booked = 0;
+	let t_active = 0;
+	let t_maintaince = 0;
+
+	firebase.database().ref('Rooms').on('value',(snap)=>{
+            
+
+            snap.forEach((element, index) => {   //forEach is a loop where element carry the value and index carry the array index. 
+                // let name = snap.val();
+                
+                let obj = element.val();
+                let room_no = element.key; // "key" is a keyword, it return the current node. let name = obj.key, why this is wrong.
+                t_rooms = t_rooms + 1;
+                // console.log(t_rooms);
+                let floor_no = obj.FloorNo;
+                // console.log(age);
+                let room_aminites = obj.RoomAminites;
+                let room_status = obj.RoomStatus;
+                console.log(room_status);
+                if(room_status === "booked")
+                    {
+                        t_booked = t_booked + 1;
+                    }
+                    
+                    else if(room_status === "active")
+                    {
+                        t_active = t_active + 1;
+                    }
+                    
+                    else if(room_status === "maintance")
+                    {
+                        t_maintaince = t_maintaince + 1;
+                    }
+                let room_type = obj.RoomType;
+                 //console.log(obj.length);
+
+                front_page.innerHTML = `<div>
+				 <p id="myimg1" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
+				   <span>Total Bookings</span><br>
+				   <span id="t_booked">${t_booked}</span>
+				 </p>
+			     <p id="myimg2" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
+			       <span id="t_rooms">Total Room</span><br>
+				   <span>${t_rooms}</span>
+			     </p>
+			     <p id="myimg3" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
+			       <span id="t_active">Active Room</span><br>
+				   <span>${t_active}</span>
+			     </p>
+			     <p id="myimg4" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
+			       <span id="t_maintaince" name="t_maintaince">Maintance Room</span><br>
+				   <span id="t_maintaince2">${t_maintaince}</span>
+			     </p>
+			     </div>`;
+
+			    document.getElementById("myimg1").style.marginTop = "50px";
+				document.getElementById("myimg1").style.marginLeft = "50px";
+				document.getElementById("myimg1").style.marginRight = "50px";
+
+				document.getElementById("myimg2").style.marginTop = "50px";
+				document.getElementById("myimg2").style.marginLeft = "50px";
+				document.getElementById("myimg2").style.marginRight = "50px";
+
+				document.getElementById("myimg3").style.marginTop = "50px";
+				document.getElementById("myimg3").style.marginLeft = "50px";
+				document.getElementById("myimg3").style.marginRight = "50px";
+
+				document.getElementById("myimg4").style.marginTop = "50px";
+				document.getElementById("myimg4").style.marginLeft = "70px";
+				document.getElementById("myimg4").style.paddingTop = "13px";
+
+				document.getElementById("t_maintaince").style.fontSize = "1.3em";
+				document.getElementById("t_maintaince").style.marginLeft = "10px";
+				
+
+				document.getElementById("t_maintaince2").style.fontSize = "2.3em";
+				document.getElementById("t_maintaince2").style.marginLeft = "10px";
+				document.getElementById("t_maintaince2").style.marginTop = "10px";
+				document.getElementById("t_maintaince2").style.textAlign = "center";
+                      
+           });
+    });
+     
+} 
 
  // function to create room
 const createRoom = () => {
@@ -190,7 +280,7 @@ const createRoom = () => {
 		    		RoomAminites: aminitesVal,
 		    		RoomStatus: statusVal
 	    	  });  
-        document.getElementById(messageId).innerHTML = "Room Created";
+        // document.getElementById(messageId).innerHTML = "Room Created";
     }
 };
 
@@ -233,6 +323,7 @@ const bookRoom = () => {
                               <input type="datetime-local" id="check_out" name="check_out"><br>
 
 							  <br><input id="submit" type="submit" value="Submit">
+							  <br><p id="message"></p>
 							</form>`;
     let bookRoomHtml = front_page.innerHTML;  // onclick="func();"
     // console.log(bookRoomHtml.id="room_no");
@@ -243,6 +334,7 @@ const bookRoom = () => {
     let peoplenoId = bookRoomHtml.id="no_p";
     let checkinId = bookRoomHtml.id="check_in";
     let checkoutId = bookRoomHtml.id="check_out";
+    let messageId = bookRoomHtml.id="message";
     
     let submitId = bookRoomHtml.id="submit";
    
@@ -293,6 +385,7 @@ const bookRoom = () => {
     		checkIn: checkIn,
     		checkOut: checkOut
     	});
+    	document.getElementById(messageId).innerHTML = "Room Booked";
     }
 };
 
@@ -473,7 +566,9 @@ const customerProfile = () => {
 		front_page.innerHTML = `<h4>Name: <span id="name"></span></h4>
 						        <h4>Gender: <span id="gender"></span></h4>
 						        <h4>Phone Number: <span id="phone_number"></span></h4>
-						        <h4>Email Id: <span id="email_id"></span></h4>`;
+						        <h4>Check-In Date: <span id="checkIn_id"></span></h4>
+						        <h4>Check-Out Date: <span id="checkOut_id"></span></h4>
+						        <h4>Total No of People: <span id="tnoP_id"></span></h4>`;
 		
 		phone_no = pInfo;
         loc = loc;
@@ -483,16 +578,17 @@ const customerProfile = () => {
          let firstName = snap.val().firstName;
          let lastName = snap.val().lastName;
          let fullName = firstName+" "+lastName;
-         let  gender = snap.val().gender;
-         // let imgObj = snap.child("image").val();
-         // let img = imgObj.img;
-         // console.log(img);
-         // let imgDom = `<img id="pImg" src="${img}" height="125px" width="200px alt="">`;
-         // document.getElementById("img").innerHTML = imgDom;
+         let gender = snap.val().gender;
+         let checkIn = snap.val().checkIn;
+         let checkOut = snap.val().checkOut;
+         let noOfPeople = snap.val().noOfPeople;
+
          document.getElementById("name").innerHTML = fullName; 
          document.getElementById("gender").innerHTML = gender;
          document.getElementById("phone_number").innerHTML = phone_no;
-         document.getElementById("email_id").innerHTML = email_id; 
+         document.getElementById("checkIn_id").innerHTML = checkIn;
+         document.getElementById("checkOut_id").innerHTML = checkOut;
+         document.getElementById("tnoP_id").innerHTML = noOfPeople; 
          });				        
 	};
 
@@ -520,7 +616,6 @@ const customerProfile = () => {
                     <h4>Name: ${fullName}</h4>
                     <h4>Phone No: ${phone_no}</h4>
                     <h4>Gender: ${gender}</h4>
-                    <h4>Email Id: ${email_id}</h4>
                     <button id="${phone_no}" type="submit" class="btn btn-primary info"  >View Details</button>
                     <hr class="my-4">`
             });
@@ -535,8 +630,8 @@ const customerProfile = () => {
                     if(tName == "BUTTON"){
                         pInfo = event.target.id;
                         loc = "Customers";
-                        localStorage.setItem("textvalue", pInfo);
-                        localStorage.setItem("textvalue2", loc);
+                        // localStorage.setItem("textvalue", pInfo);
+                        // localStorage.setItem("textvalue2", loc);
                         loadRoom(loc, pInfo);
                     }
                     return false;
@@ -544,6 +639,18 @@ const customerProfile = () => {
                     info.addEventListener("click", (event)=>indVal(event)); // we use "Bubbling" to pass value from one page to another.
     });
 };
+
+const logOut = () =>{
+	//window.location.replace("./login.html");
+	document.getElementById("log_mes").innerHTML = "This button is not working";
+ }
+// function logOut(){
+//   firebase.auth().signOut();
+// }
+
+
+//This eventListener is to call the homeView function.
+home_view.addEventListener("click", homeView);
 
 //This eventListener is to call the createRoom function.
 create_room.addEventListener("click", createRoom);
@@ -556,3 +663,5 @@ room_view.addEventListener("click", roomView);
 
 //This eventListener is to call the customerProfile function.
 customer_profile.addEventListener("click", customerProfile);
+
+logout.addEventListener("click", logOut);

@@ -9,15 +9,20 @@
 
   <!-- javascript -->
   <script type="text/javascript" src="app.js" defer></script>
+  <script type="text/javascript">
+    // function preback(){window.history.forward();}
+    // setTimeout("preback()",0);
+    // window.onload=function()(null);
+  </script>
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
-<body>
+<body onload="homeView()">
 
 <div class="wrapper">
     <div class="sidebar">
         <h2>Dashboard</h2>
         <ul>
-            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li id="home_view"><a href="#"><i class="fas fa-home"></i>Home</a></li>
             <li id="book_room"><a href="#"><i class="fas fa-user"></i>Book Room</a></li> 
             <li id="room_view"><a href="#"><i class="fas fa-user"></i>Rooms</a></li>
             <li id="create_room"><a href="#"><i class="fas fa-hotel"></i>Create Room</a></li>
@@ -28,14 +33,16 @@
             <!-- <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li> -->
         </ul>
         <div class="social_media">
-          <a href="#">log out</i></a>
+          <!-- <a href="#">log out</i></a> -->
+          <input id="logout" type="submit" value="Log out">
+          <p id="log_mes"></p>
       </div>
     </div>
     <div class="main_content">
         <div class="header"><h2>Hotel Management System</h2></div>  
         <div class="info" id="front_page">
-          <h1>Hello world</h1>
-          <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div>
+          <!-- <h1>Hello world</h1>
+          <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div> -->
          
       </div>
         <!-- <div class="social_media">
