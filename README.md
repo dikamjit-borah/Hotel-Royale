@@ -1,2 +1,3 @@
-# Hotel-management-Application-version-2
- This is 2nd version of  the hotel management system with  more improvement and extra feature.
+# Hotel-management-Application
+ Web application for a hotel to create, book and update customer and room details
+Built with HTML5, CSS3, and vanilla Javascript, with Firebase for backend.
