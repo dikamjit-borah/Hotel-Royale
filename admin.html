@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hotel Management System</title>
+
+  <!-- css -->
+	<link rel="stylesheet" href="styles.css">
+
+  <!-- javascript -->
+  <script type="text/javascript" src="admin.js" defer></script>
+  <script type="text/javascript" src="login.js" defer></script>
+  <script type="text/javascript">
+    // function preback(){window.history.forward();}
+    // setTimeout("preback()",0);
+    // window.onload=function()(null);
+  </script>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body onload="homeView()">
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Hotel Royale</h2>
+        <ul>
+            <li id="home_view"><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li id="book_room"><a href="#"><i class="fas fa-house-user"></i>Book Room</a></li> 
+            <li id="room_view"><a href="#"><i class="fas fa-hotel"></i>Rooms</a></li>
+            <li id="create_room"><a href="#"><i class="fas fa-plus"></i>Create Room</a></li>
+            <li id="customer_profile"><a href="#"><i class="fas fa-users"></i>Customers</a></li>
+            <li id="create_manager"><a href="#"><i class="fas fa-project-diagram"></i>Create Manager</a></li>
+            <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li> -->
+      
+            <!-- <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li> -->
+        </ul>
+        <div class="social_media">
+          <!-- <a href="#">log out</i></a> -->
+          <input id="logout" type="submit" value="Log out">
+          <p id="log_mes"></p>
+      </div>
+    </div>
+    <div class="main_content">
+        <div class="header">
+          <h2 id="adminInfo">Admin Dashboard</h2>
+          <p id="adminInfo">Hello Admin</p>
+        </div>  
+        <div class="info" id="front_page">
+          <!-- <h1>Hello world</h1>
+          <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos perferendis eos? Consequuntur!</div> -->
+         
+      </div>
+        <!-- <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+      </div> -->
+    </div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-storage.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCuej9t8o1_kpUPDSRD4bUKKmb06wVCS0I",
+    authDomain: "hotel-royal-69a54.firebaseapp.com",
+    databaseURL: "https://hotel-royal-69a54.firebaseio.com",
+    projectId: "hotel-royal-69a54",
+    storageBucket: "hotel-royal-69a54.appspot.com",
+    messagingSenderId: "1005002840425",
+    appId: "1:1005002840425:web:8a83ecc86701c864ce45f8",
+    measurementId: "G-GC9CF72H69"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+</body>
+</html>

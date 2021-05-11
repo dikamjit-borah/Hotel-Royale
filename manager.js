@@ -26,7 +26,7 @@ const homeView = () => {
                 // console.log(t_rooms);
                 let floor_no = obj.FloorNo;
                 // console.log(age);
-                let room_aminites = obj.RoomAminites;
+                let room_amenities = obj.RoomAmenities;
                 let room_status = obj.RoomStatus;
                 console.log(room_status);
                 if(room_status === "booked")
@@ -52,237 +52,25 @@ const homeView = () => {
 				   <span id="t_booked">${t_booked}</span>
 				 </p>
 			     <p id="myimg2" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
-			       <span id="t_rooms">Total Room</span><br>
+			       <span id="t_rooms">Total Rooms</span><br>
 				   <span>${t_rooms}</span>
 			     </p>
 			     <p id="myimg3" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
-			       <span id="t_active">Active Room</span><br>
+			       <span id="t_active">Active Rooms</span><br>
 				   <span>${t_active}</span>
 			     </p>
 			     <p id="myimg4" src="" style="height: 200px; width: 200px; border: 2px solid black; float:left">
-			       <span id="t_maintaince" name="t_maintaince">Maintance Room</span><br>
+			       <span id="t_maintaince" name="t_maintaince">Rooms in maintenance</span><br>
 				   <span id="t_maintaince2">${t_maintaince}</span>
 			     </p>
 			     </div>`;
 
-			    document.getElementById("myimg1").style.marginTop = "50px";
-				document.getElementById("myimg1").style.marginLeft = "50px";
-				document.getElementById("myimg1").style.marginRight = "50px";
-
-				document.getElementById("myimg2").style.marginTop = "50px";
-				document.getElementById("myimg2").style.marginLeft = "50px";
-				document.getElementById("myimg2").style.marginRight = "50px";
-
-				document.getElementById("myimg3").style.marginTop = "50px";
-				document.getElementById("myimg3").style.marginLeft = "50px";
-				document.getElementById("myimg3").style.marginRight = "50px";
-
-				document.getElementById("myimg4").style.marginTop = "50px";
-				document.getElementById("myimg4").style.marginLeft = "70px";
-				document.getElementById("myimg4").style.paddingTop = "13px";
-
-				document.getElementById("t_maintaince").style.fontSize = "1.3em";
-				document.getElementById("t_maintaince").style.marginLeft = "10px";
-				
-
-				document.getElementById("t_maintaince2").style.fontSize = "2.3em";
-				document.getElementById("t_maintaince2").style.marginLeft = "10px";
-				document.getElementById("t_maintaince2").style.marginTop = "10px";
-				document.getElementById("t_maintaince2").style.textAlign = "center";
-                      
+			 
            });
     });
      
 } 
 
- // function to create room
-const createRoom = () => {
-	// document.getElementById("create_room").style.color = "red";
-	 front_page.innerHTML = `<form name="forms" action="">
-	                          <h3>Room Creation</h3>
-
-	                          <br><label for="rno">Room No:</label><br>
-                              <input type="text" id="room_no" name="room_no" ><br>
-
-                              <br><label for="fno">Floor No:</label><br>
-                              <input type="text" id="floor_no" name="floor_no" value=""><br>
-                              
-                              <br>Image Name <input id="namebox" type="text" name=""><br>
-                              <img id="myimg" src="" name="img" style="height: 200px; width: 200px; border: 2px solid black"><label id="upProgress"></label><br><br>
-                              <input id="select" type="submit" value="Select Image"><br>
-                              
-                              <br><p>Room Type:</p>
-                              <input type="radio" id="normal" name="room" value="normal">
-							  <label for="normal">Normal</label><br>
-							  <input type="radio" id="delux" name="room" value="delux">
-							  <label for="delux">Delux</label><br>
-							  <input type="radio" id="superdelux" name="room" value="super delux">
-							  <label for="super delux">Super Delux</label>
-                              
-                              <br><br><p>Aminites:</p>
-							  <input type="checkbox" id="bed" name="aminites" value="Bed">
-							  <label for="bed">Bed</label><br>
-							  <input type="checkbox" id="ac" name="aminites" value="A/C">
-							  <label for="ac">A/C</label><br>
-							  <input type="checkbox" id="bathroom" name="aminites" value="Bath Room">
-							  <label for="bathroom">Bath Room</label><br>
-
-							  <br><p>Status:</p>
-                              <input type="radio" id="active" name="status" value="active">
-							  <label for="active">Active</label><br>
-							  <input type="radio" id="booked" name="status" value="booked">
-							  <label for="booked">Booked</label><br>
-							  <input type="radio" id="maintance" name="status" value="maintance">
-							  <label for="maintance">Maintance</label><br>
-
-							  <br><input id="submit" type="submit" value="Submit">
-							  <p id="message"></p>
-							</form>`;
-    let createRoomHtml = front_page.innerHTML;
-    // console.log(createRoomHtml.id="room_no");
-    let roomId = createRoomHtml.id="room_no";
-    let floorId = createRoomHtml.id="floor_no";
-    let normalId = createRoomHtml.id="normal";
-    let deluxId = createRoomHtml.id="delux";
-    let superdeluxId = createRoomHtml.id="superdelux";
-    let bedId = createRoomHtml.id="bed";
-    let acId = createRoomHtml.id="ac";
-    let bathroomId = createRoomHtml.id="bathroom";
-    let activeId = createRoomHtml.id="active";
-    let bookedId = createRoomHtml.id="booked";
-    let maintanceId = createRoomHtml.id="maintance";
-    let messageId = createRoomHtml.id="message";
-
-    //firebase varriables
-    let nameboxId = createRoomHtml.id="namebox";
-    let submitId = createRoomHtml.id="submit";
-    let selectId = createRoomHtml.id="select";
-    let myimgId = createRoomHtml.id="myimg";
-    	
-	let files = []; //file varriable will store the image.
-	let reader; //reader varriable will be a object. 
-	let ImgName, ImgUrl;
-
-    document.getElementById(selectId).onclick = function(e){
-    	e.preventDefault();
-     	let input = document.createElement("input");
-     	input.type = "file";
-
-     	input.onchange = e => {
-     		files = e.target.files;
-     		reader = new FileReader();
-     		reader.onload = function(){
-     			document.getElementById(myimgId).src = reader.result;
-     		}
-     		reader.readAsDataURL(files[0]);
-     	}
-     	input.click();
-     }
-
-    document.getElementById(submitId).onclick = function(e){
-    	e.preventDefault();
-        
-        // Here we store values for a the particular id.
-	    let roomNo = document.getElementById(roomId).value;
-	    console.log(roomNo);
-	    let floorNo = document.getElementById(floorId).value;
-	    console.log(floorNo);
-	    let typeNormal = document.getElementById(normalId).value;
-	    //console.log(typeNormal);
-	    let typeDelux = document.getElementById(deluxId).value;
-	    //console.log(typeDelux);
-	    let typeSuperdelux = document.getElementById(superdeluxId).value;
-	    //console.log(typeSuperdelux);   
-	    let aminitesBed = document.getElementById(bedId).value;
-	    //console.log(aminitesBed);
-	    let aminitesAc = document.getElementById(acId).value;
-	    //console.log(aminitesAc);
-	    let aminitesBathroom = document.getElementById(bathroomId).value;
-	    //console.log(aminitesBathroom);
-	    let statusActive = document.getElementById(activeId).value;
-	    //console.log(statusActive);
-	    let statusBooked = document.getElementById(bookedId).value;
-	    //console.log(statusBooked);
-	    let statusMaintance = document.getElementById(maintanceId).value;
-	    //console.log(statusMaintance);
-    	
-        
-	    // Here varriables will store names.
-	    let room = document.getElementsByName("room");
-	               for(let i=0; i<room.length; i++){
-	                 	  if(room[i].checked)
-		                    {
-		                        var roomVal = room[i].value;
-		                        console.log(roomVal);
-		                    }
-	                }
-	               
-	    let aminites = document.getElementsByName("aminites");
-	                 for(let i=0; i<aminites.length; i++){
-	                 	  if(aminites[i].checked)
-		                    {
-		                        var aminitesVal = aminites[i].value;
-		                        console.log(aminitesVal);
-		                    }
-	                 }
-                    
-	    let status = document.getElementsByName("status");
-	                 for(let i=0; i<status.length; i++){
-	                 	  if(status[i].checked)
-		                    {
-		                        var statusVal = status[i].value;
-		                        console.log(statusVal);
-		                    }
-	                 }
-        
-        // let ImgName = document.getElementById(nameboxId).value;
-        // let uploadTask = firebase.storage().ref("Images/"+ImgName+".png").put(files[0]);
-
-        // uploadTask.on('state_change', function(snapshot){
-        //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //     console.log('Upload is ' + progress + '% done');
-        // }, 
-
-        // function(){
-        //     uploadTask.snapshot.ref.getDownloadURL().then(function(url){
-        //       ImgUrl = url;
-
-        //       firebase.database().ref("Rooms/"+roomNo).set({
-		    		// ImgName: ImgName,
-		      //       Link: ImgUrl
-	    	  // });
-              
-        //     });
-        //    }
-        // );
-
-       
-       //  const ref = firebase.storage().ref();
-	      // const file = document.querySelector("#myimg").files[0];
-	      // const name = +new Date() + "-" + file.name;
-	      // const metadata = {
-	      //   contentType: file.type
-	      // };
-	      // const task = ref.child("Images").put(file, metadata);
-	      // task
-	      //   .then(snapshot => snapshot.ref.getDownloadURL())
-	      //   .then(url => {
-	      //     console.log(url);
-	      //   })
-	      //   .catch(console.error);
-	 
-
-        
-        firebase.database().ref("Rooms/"+roomNo).set({
-		    		RoomNo: roomNo,
-		    		FloorNo: floorNo,
-		    		RoomType: roomVal,
-		    		RoomAminites: aminitesVal,
-		    		RoomStatus: statusVal
-	    	  });  
-        // document.getElementById(messageId).innerHTML = "Room Created";
-    }
-};
 
  // function for booking room
 const bookRoom = () => {
@@ -355,7 +143,7 @@ const bookRoom = () => {
 	    let checkIn = document.getElementById(checkinId).value;
 	    // //console.log(genderFemale);   
 	    let checkOut = document.getElementById(checkoutId).value;
-	    //console.log(aminitesBed);
+	    //console.log(amenitiesBed);
     	var gender = document.getElementsByName("gender");
                     if(gender[0].checked)
                     {
@@ -397,10 +185,10 @@ const bookRoom = () => {
         	room_type.innerHTML = `<form>
 	                                  <input type="radio" id="normal" name="room" value="normal">
 									  <label for="normal">Normal</label><br>
-									  <input type="radio" id="delux" name="room" value="delux">
-									  <label for="delux">Delux</label><br>
-									  <input type="radio" id="superdelux" name="room" value="super delux">
-									  <label for="super delux">Super Delux</label>
+									  <input type="radio" id="deluxe" name="room" value="deluxe">
+									  <label for="deluxe">Deluxe</label><br>
+									  <input type="radio" id="superdeluxe" name="room" value="super deluxe">
+									  <label for="super deluxe">Super Deluxe</label>
 									  <br><input id="submit" type="submit" value="Submit">
 									  <br><input id="cancel" type="submit" value="Cancel"> 
 		                         </form>`;
@@ -478,7 +266,7 @@ const bookRoom = () => {
 
 		front_page.innerHTML = `<h4>Room No: <span id="room_no"></span></h4><br>
 						        <h4>Floor No: <span id="floor_no"></span></h4><br>
-						        <h4>Room Aminites: <span id="room_aminites"></span></h4><br>
+						        <h4>Room Amenities: <span id="room_amenities"></span></h4><br>
 						        <h4>Room Type: <span id="room_type"></span></h4><input id="editRoomType" type="submit" value="Edit"><br><br>
 						        <h4>Room Status: <span id="room_status"></span></h4><input id="editRoomStatus" type="submit" value="Edit">`;
 		
@@ -494,7 +282,7 @@ const bookRoom = () => {
         // console.log(snap.val());
          let floor_no = snap.val().FloorNo;
         // console.log(age);
-         let room_aminites = snap.val().RoomAminites;
+         let room_amenities = snap.val().RoomAmenities;
          let room_status = snap.val().RoomStatus;
          let room_type = snap.val().RoomType;
          // let imgObj = snap.child("image").val();
@@ -504,7 +292,7 @@ const bookRoom = () => {
          // document.getElementById("img").innerHTML = imgDom;
          document.getElementById("room_no").innerHTML = room_no; 
          document.getElementById("floor_no").innerHTML = floor_no;
-         document.getElementById("room_aminites").innerHTML = room_aminites;
+         document.getElementById("room_amenities").innerHTML = room_amenities;
          document.getElementById("room_status").innerHTML = room_status;
          document.getElementById("room_type").innerHTML = room_type; 
          });				        
@@ -525,14 +313,14 @@ const bookRoom = () => {
                // let img = obj2.img;
                  let floor_no = obj.FloorNo;
                 // console.log(age);
-                 let room_aminites = obj.RoomAminites;
+                 let room_amenities = obj.RoomAmenities;
                  let room_status = obj.RoomStatus;
                  let room_type = obj.RoomType;
                  // let room_type = obj.RoomType;
                  str += `
                     <h4>Room No: ${room_no}</h4>
                     <h4>Floor No: ${floor_no}</h4>
-                    <h4>Room Aminites: ${room_aminites}</h4>
+                    <h4>Room Amenities: ${room_amenities}</h4>
                     <h4>Room Type: ${room_type}</h4>
                     <h4>Room Status: ${room_status}</h4>
                     <button id="${room_no}" type="submit" class="btn btn-primary info"  >View Details</button>
@@ -641,19 +429,13 @@ const customerProfile = () => {
 };
 
 const logOut = () =>{
-	//window.location.replace("./login.html");
-	document.getElementById("log_mes").innerHTML = "This button is not working";
+	window.location.replace("./login.html");
+	// document.getElementById("log_mes").innerHTML = "This button is not working";
  }
-// function logOut(){
-//   firebase.auth().signOut();
-// }
 
 
 //This eventListener is to call the homeView function.
 home_view.addEventListener("click", homeView);
-
-//This eventListener is to call the createRoom function.
-create_room.addEventListener("click", createRoom);
 
 //This eventListener is to call the bookRoom function.
 book_room.addEventListener("click", bookRoom);
